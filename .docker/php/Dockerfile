@@ -2,8 +2,9 @@ FROM php:7.2.13-fpm
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
-    build-essential locales acl mailutils wget zip unzip \
-    gnupg gnupg1 gnupg2
+    build-essential locales acl mailutils wget zip unzip zlib1g-dev \
+    gnupg gnupg1 gnupg2 \
+    && docker-php-ext-install zip
 
 COPY php.ini /etc/php/7.2.13/php.ini
 COPY php-fpm-pool.conf /etc/php/7.2.13/pool.d/www.conf
